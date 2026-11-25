@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="es-AR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Orientate — aprendé a moverte por Buenos Aires sin mapa</title>
+<meta name="description" content="Lecciones y minijuegos para armarte el mapa mental de la Ciudad de Buenos Aires: barrios, avenidas, subte y numeración.">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🧭</text></svg>">
+<link rel="stylesheet" href="vendor/leaflet.css">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header class="top">
+  <div class="brand"><span class="logo">🧭</span><div><b>Orientate</b><small>tu mapa mental de Buenos Aires</small></div></div>
+  <nav class="tabs" role="tablist">
+    <button data-tab="aprender" class="on">📖 Aprender</button>
+    <button data-tab="explorar">🗺️ Explorar</button>
+    <button data-tab="jugar">🎮 Jugar</button>
+  </nav>
+  <div class="xp" title="Puntos totales"><span id="xp">0</span> pts</div>
+</header>
+<main>
+  <section id="panel"></section>
+  <section id="mapwrap">
+    <div id="map"></div>
+    <div id="maphint" class="maphint hidden"></div>
+    <div id="compass" class="compass" title="El norte está arriba">N<br>▲</div>
+  </section>
+</main>
+<script src="vendor/leaflet.js"></script>
+<script src="data.js"></script>
+<script src="lecciones.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
