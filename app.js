@@ -270,6 +270,7 @@ function sig(){
   <div class="puntos">${Array.from({length:10},(_,i)=>`<i class="${G.res[i]===true?'ok':G.res[i]===false?'bad':i===G.n-1?'now':''}"></i>`).join('')}</div>
   <p class="q">${q.prompt}</p><div class="opts" id="opts"></div><div id="fb"></div>`;
   $('#salir').onclick=()=>ir('jugar');
+  if(!q.options&&movil()) $('#hoja').classList.add('chica');
   q.setup&&q.setup();
   const box=$('#opts');
   if(q.options){
