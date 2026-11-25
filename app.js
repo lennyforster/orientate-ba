@@ -64,7 +64,7 @@ map.on('load',()=>{
   ['hlPoly','hlLine','hlPt'].forEach(s=>map.addSource(s,{type:'geojson',data:{type:'FeatureCollection',features:[]}}));
   // capas
   map.addLayer({id:'mask-line',type:'line',source:'limite',paint:{'line-color':C.ink,'line-width':2.2,'line-opacity':.7}});
-  map.addLayer({id:'b-fill',type:'fill',source:'barrios',paint:{'fill-color':['get','zcol'],'fill-opacity':['case',['boolean',['feature-state','hover'],false],.55,.32]}});
+  map.addLayer({id:'b-fill',type:'fill',source:'barrios',paint:{'fill-color':['get','zcol'],'fill-opacity':['case',['boolean',['feature-state','hover'],false],.5,.24]}});
   map.addLayer({id:'b-line',type:'line',source:'barrios',paint:{'line-color':'#fff','line-width':1.6}});
   map.addLayer({id:'av-hit',type:'line',source:'av',paint:{'line-color':'#000','line-opacity':0,'line-width':18}});
   map.addLayer({id:'av-line',type:'line',source:'av',layout:{'line-cap':'round','line-join':'round'},paint:{'line-color':['case',['boolean',['get','reinicia'],false],C.brown,C.ink],'line-width':['interpolate',['linear'],['zoom'],11,['case',['==',['get','nivel'],1],2.2,1.2],15,['case',['==',['get','nivel'],1],6,3]],'line-opacity':.8}});
@@ -171,14 +171,14 @@ function vAprender(){
 function accion(a){
   hlClear(); capas({barrios:true,labels:false,av:true});
   if(a==='bordes'){
-    hlAv('General Paz',C.bad,6,true); etiqueta([-58.352,-34.575],'RÍO DE LA PLATA →  ESTE',C.blue); etiqueta([-58.41,-34.672],'RIACHUELO ·  SUR',C.blue); encuadre();
+    hlAv('General Paz',C.bad,6,true); etiqueta([-58.352,-34.575],'RÍO DE LA PLATA · ESTE',C.blue); etiqueta([-58.41,-34.672],'RIACHUELO · SUR',C.blue); encuadre();
   } else if(a==='rivadavia'){
     hlAv('Rivadavia',C.bad,8,true); hlAv('9 de Julio',C.blue,5,true); hlAv('General Paz',C.blue,5,false);
-    etiqueta([-58.465,-34.587],'↑ NORTE'); etiqueta([-58.465,-34.655],'↓ SUR'); encuadre();
+    etiqueta([-58.465,-34.587],'NORTE'); etiqueta([-58.465,-34.655],'SUR'); encuadre();
   } else if(a==='numeracion'){
     hlAv('Rivadavia','#9a8b7a',5,false); hlAv('Corrientes',C.bad,7,true); hlAv('Pueyrredón',C.blue,7,true); hlAv('Jujuy',C.blue,7,true);
-    hlPt([-58.3685,-34.6033],C.bad,'Corrientes 0'); etiqueta([-58.437,-34.5985],'← la altura crece hacia el oeste',C.bad);
-    hlPt([-58.4060,-34.6095],C.blue,'Pueyrredón / Jujuy 0'); etiqueta([-58.4115,-34.590],'↑ crece',C.blue); etiqueta([-58.4115,-34.630],'↓ crece',C.blue);
+    hlPt([-58.3685,-34.6033],C.bad,'Corrientes 0'); etiqueta([-58.437,-34.5985],'la altura crece hacia el oeste',C.bad);
+    hlPt([-58.4060,-34.6095],C.blue,'Pueyrredón / Jujuy 0'); etiqueta([-58.4115,-34.590],'crece hacia el norte',C.blue); etiqueta([-58.4115,-34.630],'crece hacia el sur',C.blue);
     encuadre([[-58.45,-34.64],[-58.36,-34.585]]);
   } else if(a==='pares'){
     capas({barrios:true,labels:false,av:false,calles:true});
