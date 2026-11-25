@@ -47,11 +47,12 @@ const zonaDe = b => ZONA[b]||'oeste';
 
 /* ---------- mapa ---------- */
 const map = L.map('map',{zoomSnap:.25,minZoom:11,maxBounds:[[-34.76,-58.62],[-34.48,-58.28]]}).setView([-34.615,-58.445],12);
-const attr='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy; <a href="https://carto.com/attributions">CARTO</a>';
-const tilesNo = L.tileLayer('https://{s}.basemaps.cartocdn.com/light_nolabels/{z}/{x}/{y}{r}.png',{attribution:attr,subdomains:'abcd',maxZoom:18});
-const tilesSi = L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png',{attribution:attr,subdomains:'abcd',maxZoom:18});
+const attr='Mapa base &copy; Esri, HERE, Garmin, &copy; colaboradores de <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>';
+const ESRI='https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/';
+const tilesNo = L.tileLayer(ESRI+'World_Light_Gray_Base/MapServer/tile/{z}/{y}/{x}',{attribution:attr,maxZoom:16});
+const tilesSi = L.tileLayer(ESRI+'World_Light_Gray_Reference/MapServer/tile/{z}/{y}/{x}',{maxZoom:16,pane:'shadowPane'});
 tilesNo.addTo(map);
-function etiquetasCalles(on){ if(on){map.removeLayer(tilesNo);tilesSi.addTo(map);} else {map.removeLayer(tilesSi);tilesNo.addTo(map);} }
+function etiquetasCalles(on){ if(on){ if(!map.hasLayer(tilesSi)) tilesSi.addTo(map);} else if(map.hasLayer(tilesSi)) map.removeLayer(tilesSi); }
 
 const limite = L.geoJSON(D.limite,{style:{color:'#14213d',weight:2.5,fill:false},interactive:false}).addTo(map);
 let onBarrioClick=null, onAvClick=null, onMapClick=null, onStClick=null;

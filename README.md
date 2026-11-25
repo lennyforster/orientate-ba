@@ -11,6 +11,6 @@ Funciona como sitio estático (GitHub Pages). El progreso se guarda en el navega
 - **Estaciones de subte (90)**: dataset de estaciones del GCBA (vía repo `Popoliku/subteBuenosAires`). Las líneas se dibujan uniendo estaciones en línea recta.
 - **Regla de pares/impares**: tutorial de numeración de la comunidad OpenStreetMap Argentina.
 - **Polígonos de numeración (1904)**: nota de C5N sobre las calles que cambian de nombre.
-- Mapa base: © OpenStreetMap, © CARTO. Librería: Leaflet.
+- Mapa base: Esri World Light Gray Canvas (© Esri, HERE, Garmin, colaboradores de OpenStreetMap). Librería: Leaflet.
 
 Las calles que cambian de nombre al cruzar Rivadavia se verificaron con la geometría de OSM (los extremos de cada par coinciden en la esquina).
