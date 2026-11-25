@@ -43,7 +43,7 @@ const C={ink:'#2b2520',ok:'#1f6b4a',bad:'#c2462a',blue:'#1d4f8f',hi:'#ffcf3a',br
 /* ---------- mapa ---------- */
 const BOUNDS=[[-58.535,-34.708],[-58.33,-34.525]];
 const map=new maplibregl.Map({container:'map',style:'https://tiles.openfreemap.org/styles/liberty',bounds:BOUNDS,
-  maxBounds:[[-58.75,-34.82],[-58.15,-34.40]],minZoom:10,maxZoom:17,attributionControl:{compact:true},dragRotate:false,pitchWithRotate:false,touchPitch:false});
+  maxBounds:[[-59.3,-35.3],[-57.6,-34.0]],minZoom:8.5,maxZoom:17,attributionControl:{compact:true},dragRotate:false,pitchWithRotate:false,touchPitch:false});
 map.touchZoomRotate.disableRotation(); window._map=map;
 map.addControl(new maplibregl.NavigationControl({showCompass:false}),'top-right');
 let BASE_SYM=[], ready=false; const onReady=[];
@@ -92,6 +92,7 @@ map.on('load',()=>{
     if(onBarrioClick){ const f=pick('b-fill')[0]; if(f) return onBarrioClick(BYB[f.properties.nombre]); }
     if(onMapClick) onMapClick(e.lngLat);
   });
+  document.querySelectorAll('.maplibregl-ctrl-attrib').forEach(a=>a.classList.remove('maplibregl-compact-show'));
   ready=true; onReady.splice(0).forEach(f=>f());
 });
 let onBarrioClick=null,onAvClick=null,onMapClick=null,onStClick=null,barHover=true;
@@ -116,7 +117,7 @@ function hlAv(n,c,w,lbl){ const f=BYAV[n]; if(!f) return; HL.line.push({type:'Fe
 function hlBarrio(n,c,o){ HL.poly.push({type:'Feature',properties:{c:c||C.bad,o:o==null?.5:o},geometry:BYB[n].geometry}); hlFlush(); }
 function hlPt(lnglat,c,l,extra){ HL.pt.push({type:'Feature',properties:Object.assign({c:c||C.ink},l?{l}:{},extra||{}),geometry:{type:'Point',coordinates:lnglat}}); hlFlush(); }
 function etiqueta(lnglat,l,tc){ hlPt(lnglat,null,l,{solo:true,tc}); }
-function pad(){ return movil()?{top:110,bottom:Math.round(innerHeight*.52)+10,left:16,right:16}:{top:80,bottom:30,left:450,right:70}; }
+function pad(){ return movil()?{top:70,bottom:Math.round(innerHeight*($('#hoja').classList.contains('chica')?0:.52))+10,left:12,right:12}:{top:80,bottom:30,left:450,right:70}; }
 function encuadre(b,dur){ whenReady(()=>map.fitBounds(b||BOUNDS,{padding:pad(),duration:dur==null?700:dur})); }
 function volarA(lnglat,z){ whenReady(()=>map.easeTo({center:lnglat,zoom:z||14,padding:pad(),duration:700})); }
 function distToLine(ll,f){
